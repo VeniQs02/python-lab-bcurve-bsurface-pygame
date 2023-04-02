@@ -1,14 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
-
 import pygame
 
 
 # Jakub Kańgowski 85705: krzywe Beziera, dzbanek 3D, gra w pygame
+#
 #       Każda część zadania jest umieszczona w oddzielnej funkcji i wywołuje się je bez żadnych argumentów, jedynie
 #       odkomentowując wywołanie funkcji.
-
+#
+#
 # two_dimensional_initials() - krzywe Beziera, zaprogramowałem w tej funkcji moje inicjały z życiem krzywych, nie tylko
 #                              w formie 4 punktowych krzywych, lecz krzywych o różnych ilościach punktów aby uzyskać
 #                              ładniejsze przejścia i czytelniejszą czcionkę.
@@ -18,9 +19,11 @@ import pygame
 #                           sam dzbanek się nie wyświetla.
 #
 #
-# my_pygame() - gra typu icy tower w pygame, w prawdzie to bardziej demo, bo ma wiele niedopracowań i niedokładności, ale
-#               została stworzona w bardzo krótkim czasie
-
+# my_pygame() - gra typu icy tower w pygame, w prawdzie to bardziej demo, bo ma wiele niedopracowań i niedokładności,
+#               ale została stworzona w bardzo krótkim czasie. W grze było też udźwiękowienie ale ostatecznie
+#               z tego zrezygnowałem.
+#
+#
 def two_dimensional_initials():
     def bezier_curve(points, n_points=100):
         t = np.linspace(0, 1, n_points)
@@ -138,12 +141,7 @@ def my_pygame():
     screen = pygame.display.set_mode((screen_width, screen_height))
     player_image = pygame.image.load('player.png').convert_alpha()
     background_image = pygame.image.load('background.png').convert()
-    background_rect = background_image.get_rect()
     background_y = 0
-    # dzwieki działały ale były za głośne i nie zawsze działały jak powinny
-    #jump_sound = pygame.mixer.Sound('jump.mp3')
-    #land_sound = pygame.mixer.Sound('land.wav')
-    #game_over_sound = pygame.mixer.Sound('game_over.wav')
     brick_image = pygame.image.load('brick.png').convert_alpha()
     player_rect = player_image.get_rect()
     player_rect.midbottom = (screen_width // 2, screen_height - 10)
@@ -159,7 +157,6 @@ def my_pygame():
     platform_width = 80
     platform_height = 80
     platform_y_spacing = 100
-    platform_x_spacing = 200
     for i in range(10):
         while True:
             platform_x = random.randint(0, screen_width - platform_width)
@@ -203,7 +200,6 @@ def my_pygame():
                 player_can_jump = True
                 player_y_velocity = 0
 
-        # Move the screen with the player
         if player_rect.top < screen_height // 3:
             player_rect.top = screen_height // 3
             for platform_rect in platforms:
@@ -213,8 +209,6 @@ def my_pygame():
                     platform_rect.left = random.randint(0, screen_width - platform_width)
 
         screen.fill((0, 0, 0))
-        screen.blit(player_image, player_rect)
-
         screen.blit(background_image, (0, background_y - screen_height))
         screen.blit(background_image, (0, background_y))
         for platform_rect in platforms:
@@ -223,7 +217,6 @@ def my_pygame():
 
         pygame.display.update()
         clock.tick(60)
-    pygame.quit()
 
 
 # my_pygame()
