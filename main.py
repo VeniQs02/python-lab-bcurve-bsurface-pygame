@@ -21,7 +21,7 @@ import pygame
 #
 # my_pygame() - gra typu icy tower w pygame, w prawdzie to bardziej demo, bo ma wiele niedopracowań i niedokładności,
 #               ale została stworzona w bardzo krótkim czasie. W grze było też udźwiękowienie ale ostatecznie
-#               z tego zrezygnowałem.
+#               z tego zrezygnowałem. Spacja - skok, strzałki lewo i prawko - poruszanie się w lewo i prawo
 #
 #
 def two_dimensional_initials():
